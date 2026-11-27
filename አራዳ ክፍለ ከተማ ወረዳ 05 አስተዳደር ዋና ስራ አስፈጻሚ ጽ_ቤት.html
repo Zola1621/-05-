@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>አራዳ ክፍለ ከተማ ወረዳ 05 አስተዳደር ዋና ስራ አስፈጻሚ ጽ/ቤት</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--tx:#1d2a22;--mu:#5b6a60;--pr:#0f6b3a;--pr2:#fcd116;--bd:#dde3dc;--er:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111815;--card:#1a241f;--tx:#e8efe9;--mu:#9fb0a5;--pr:#3fb36f;--bd:#2c3a32;--er:#ff7b6b}}
+:root[data-theme="dark"]{--bg:#111815;--card:#1a241f;--tx:#e8efe9;--mu:#9fb0a5;--pr:#3fb36f;--bd:#2c3a32;--er:#ff7b6b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"Noto Sans Ethiopic","Nyala","Segoe UI",system-ui,sans-serif;line-height:1.6}
+header{background:var(--pr);color:#fff;padding:18px 16px;border-bottom:5px solid var(--pr2)}
+.w{max-width:760px;margin:0 auto;padding:0 14px}
+header h1{margin:0;font-size:1.1rem;line-height:1.35}header p{margin:2px 0 0;opacity:.9;font-size:.9rem}
+.lang{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.lang button{border:1px solid #fff8;background:transparent;color:#fff;padding:6px 14px;border-radius:20px;font:inherit;cursor:pointer}
+.lang button.on{background:#fff;color:var(--pr);font-weight:700}
+main{padding:18px 0 40px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px;margin-bottom:16px}
+h2{margin:0 0 10px;font-size:1.1rem;color:var(--pr)}
+.steps{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:0;padding:0;list-style:none}
+.steps li{background:var(--bg);border-radius:10px;padding:10px;font-size:.92rem}
+.steps b{display:block;color:var(--pr)}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.93rem}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+textarea{min-height:120px;resize:vertical}
+.btn{margin-top:16px;width:100%;padding:12px;border:0;border-radius:10px;background:var(--pr);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.btn.alt{background:transparent;color:var(--pr);border:1px solid var(--pr);margin-top:8px}
+.msg{margin-top:12px;padding:10px;border-radius:8px;display:none;font-size:.93rem}
+.msg.ok{display:block;background:#e3f4ea;color:#0b4d2a}.msg.er{display:block;background:#fbe6e3;color:var(--er)}
+@media (prefers-color-scheme:dark){.msg.ok{background:#173523;color:#9be3b8}.msg.er{background:#3a1f1b}}
+.ct p{margin:4px 0}.mu{color:var(--mu);font-size:.85rem}
+footer{text-align:center;color:var(--mu);font-size:.8rem;padding:10px 14px 24px}
+</style>
+</head>
+<body>
+<header><div class="w">
+<h1 id="t1"></h1><p id="t2"></p>
+<div class="lang" id="lang">
+<button data-l="am">አማርኛ</button><button data-l="en">English</button><button data-l="om">Afaan Oromoo</button>
+</div></div></header>
+<main class="w">
+<section class="card"><h2 id="hw"></h2>
+<ol class="steps" id="steps"></ol></section>
+
+<section class="card"><h2 id="fh"></h2>
+<div id="form">
+<label id="l1" for="type"></label><select id="type"></select>
+<label id="l2" for="name"></label><input id="name" autocomplete="name">
+<label id="l3" for="phone"></label><input id="phone" type="tel" autocomplete="tel">
+<label id="l4" for="subj"></label><input id="subj">
+<label id="l5" for="body"></label><textarea id="body"></textarea>
+<button class="btn" id="send"></button>
+<button class="btn alt" id="copy"></button>
+<div class="msg" id="msg"></div>
+</div></section>
+
+<section class="card ct"><h2 id="ch"></h2>
+<p id="c1"></p><p id="c2"></p><p id="c3"></p>
+<p class="mu" id="c4"></p></section>
+</main>
+<footer id="ft"></footer>
+
+<script>
+var T={
+am:{t1:"አራዳ ክፍለ ከተማ ወረዳ 05 አስተዳደር ዋና ስራ አስፈጻሚ ጽ/ቤት",t2:"የህዝብ ጥያቄና ቅሬታ መቀበያ",hw:"እንዴት ይሰራል?",
+steps:["1. ይጻፉ|ጥያቄዎን ወይም ቅሬታዎን ከታች ባለው ቅጽ ይሙሉ።","2. ይቀበላል|ወረዳው ያገኛል፤ የመከታተያ ቁጥር ያገኛሉ።","3. ይታያል|ለሚመለከተው የስራ ክፍል ይመራል።","4. መልስ|ምላሽ ይሰጥዎታል።"],
+fh:"ጥያቄ / ቅሬታ ያስገቡ",types:["ጥያቄ","ቅሬታ","አስተያየት / ሀሳብ","ምስጋና"],
+l2:"ሙሉ ስም (አማራጭ)",l3:"ስልክ ቁጥር",l4:"ርዕስ",l5:"ዝርዝር መልእክት",send:"ላክ",copy:"መልእክቱን ቅዳ",
+ok:"በተሳካ ሁኔታ ተልኳል። የመከታተያ ቁጥርዎ፦ ",er:"ማስገባት አልተቻለም። እባክዎ መልእክቱን ቅጂ ወስደው በወረዳው ቢሮ ያቅርቡ።",need:"እባክዎ ርዕስና መልእክት ይሙሉ።",cp:"ተቀድቷል።",
+ch:"የመገናኛ መረጃ",c1:"📍 አድራሻ፦ አራዳ ክፍለ ከተማ ወረዳ 05 አስተዳደር ጽ/ቤት፣ አዲስ አበባ",c2:"📞 ስልክ፦ [የወረዳው ስልክ ቁጥር ይጨመር]",c3:"🕗 የስራ ሰዓት፦ ሰኞ – አርብ፣ 2:30 – 11:30 (የአካባቢ ሰዓት)",c4:"ማሳሰቢያ፦ አድራሻና ስልክ ቁጥር በወረዳው ትክክለኛ መረጃ መተካት አለባቸው።",ft:"© አራዳ ክፍለ ከተማ ወረዳ 05 አስተዳደር ዋና ስራ አስፈጻሚ ጽ/ቤት"},
+en:{t1:"Arada Sub-city Woreda 05 Administration Chief Executive Office",t2:"Public Inquiries & Complaints Portal",hw:"How it works",
+steps:["1. Write|Fill in the form below with your inquiry or complaint.","2. Received|The woreda receives it and you get a tracking number.","3. Routed|It is sent to the responsible office.","4. Response|You receive a reply."],
+fh:"Submit an inquiry / complaint",types:["Inquiry","Complaint","Suggestion","Appreciation"],
+l2:"Full name (optional)",l3:"Phone number",l4:"Subject",l5:"Your message",send:"Submit",copy:"Copy message",
+ok:"Submitted successfully. Your tracking number: ",er:"Could not submit. Please copy your message and bring it to the woreda office.",need:"Please fill in the subject and message.",cp:"Copied.",
+ch:"Contact",c1:"📍 Address: Arada Sub-city Woreda 05 Administration Office, Addis Ababa",c2:"📞 Phone: [add the woreda phone number]",c3:"🕗 Hours: Mon – Fri, 8:30 AM – 5:30 PM",c4:"Note: replace the address and phone with the woreda's official details.",ft:"© Arada Sub-city Woreda 05 Administration Chief Executive Office"},
+om:{t1:"Waajjira Raawwachiisaa Muummee Bulchiinsa Aanaa 05 Magaalaa Araadaa",t2:"Gaaffii fi Komii Ummataa Simachuuf",hw:"Akkamitti hojjata?",
+steps:["1. Barreessi|Gaaffii ykn komii kee unka armaan gadii guuti.","2. Simatama|Aanaan ni simata; lakkoofsa hordoffii argatta.","3. Ergama|Waajjira dhimmi ilaaluuf ni ergama.","4. Deebii|Deebii ni argatta."],
+fh:"Gaaffii / komii galchi",types:["Gaaffii","Komii","Yaada","Galata"],
+l2:"Maqaa guutuu (filannoo)",l3:"Lakkoofsa bilbilaa",l4:"Mata duree",l5:"Ergaa kee",send:"Ergi",copy:"Ergaa waraabi",
+ok:"Milkaa'inaan ergameera. Lakkoofsi hordoffii kee: ",er:"Hin ergamne. Ergaa kee waraabsitee waajjira aanaatti dhiheessi.",need:"Mata dureefi ergaa guuti.",cp:"Waraabameera.",
+ch:"Odeeffannoo quunnamtii",c1:"📍 Teessoo: Waajjira Bulchiinsa Aanaa 05, Magaalaa Araadaa, Finfinnee",c2:"📞 Bilbila: [lakkoofsi bilbilaa aanaa itti dabalamu]",c3:"🕗 Sa'aatii hojii: Wiixata – Jimaata, 2:30 – 11:30 (sa'aatii naannoo)",c4:"Hubachiisa: Teessoofi bilbilli odeeffannoo sirrii aanaatiin bakka bu'uu qaba.",ft:"© Waajjira Raawwachiisaa Muummee Bulchiinsa Aanaa 05 Magaalaa Araadaa"}
+};
+var L="am",$=function(i){return document.getElementById(i)};
+function ap(l){L=l;var d=T[l];document.documentElement.lang=l==="om"?"om":l;
+document.title=d.t1;
+["t1","t2","hw","fh","l2","l3","l4","l5","ch","c1","c2","c3","c4","ft"].forEach(function(k){
+var m={l2:"l2",l3:"l3",l4:"l4",l5:"l5",ft:"ft"};$(k==="l2"||k==="l3"||k==="l4"||k==="l5"?k:k).textContent=d[k];});
+$("l1").textContent=({am:"የመልእክቱ አይነት",en:"Type",om:"Gosa"})[l];
+$("type").innerHTML="";d.types.forEach(function(x,i){var o=document.createElement("option");o.value=i;o.textContent=x;$("type").appendChild(o)});
+$("steps").innerHTML="";d.steps.forEach(function(s){var p=s.split("|"),li=document.createElement("li"),b=document.createElement("b");b.textContent=p[0];li.appendChild(b);li.appendChild(document.createTextNode(p[1]));$("steps").appendChild(li)});
+$("send").textContent=d.send;$("copy").textContent=d.copy;$("msg").className="msg";
+document.querySelectorAll("#lang button").forEach(function(b){b.classList.toggle("on",b.dataset.l===l)});
+try{localStorage.setItem("lang",l)}catch(e){}}
+document.querySelectorAll("#lang button").forEach(function(b){b.onclick=function(){ap(b.dataset.l)}});
+function show(c,t){var m=$("msg");m.className="msg "+c;m.textContent=t}
+function data(){return{type:T.en.types[$("type").value],name:$("name").value.trim(),phone:$("phone").value.trim(),subject:$("subj").value.trim(),body:$("body").value.trim(),lang:L}}
+$("copy").onclick=function(){var x=data(),s=x.type+"\n"+x.subject+"\n"+x.body+"\n"+x.name+" "+x.phone;
+try{navigator.clipboard.writeText(s).then(function(){show("ok",T[L].cp)},function(){show("er",T[L].er)})}catch(e){show("er",T[L].er)}};
+$("send").onclick=async function(){var x=data();if(!x.subject||!x.body){show("er",T[L].need);return}
+var ref="A05-"+Date.now().toString(36).toUpperCase().slice(-6);
+try{var db=await claude.use("db");if(!db)throw 0;
+x.ref=ref;x.status="new";x.createdAt=new Date().toISOString();
+var u=await claude.use("user");var id=await u.id();await db.doc("complaints/"+id+"/items/"+ref).set(x);
+show("ok",T[L].ok+ref);$("subj").value="";$("body").value=""}catch(e){show("er",T[L].er)}};
+var s0="am";try{s0=localStorage.getItem("lang")||"am"}catch(e){}
+ap(T[s0]?s0:"am");
+</script>
+</body>
+</html>
